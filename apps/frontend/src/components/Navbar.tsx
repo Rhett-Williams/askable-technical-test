@@ -6,14 +6,6 @@ const Navbar = () => {
   const [productHovered, setProductHovered] = useState(false);
   const [createHovered, setCreateHovered] = useState(false);
 
-  function getRandomColor() {
-    const red = Math.floor(Math.random() * 128);
-    const green = Math.floor(Math.random() * 128);
-    const blue = Math.floor(Math.random() * 128);
-
-    return `rgba(${red}, ${green}, ${blue}, 1)`;
-  }
-
   const renderBackgroundEffect = () => {
     return (
       <div className="backgroundEffectContainer">
@@ -25,7 +17,6 @@ const Navbar = () => {
                 style={{
                   animation: `moveLine ${Math.random()}s linear infinite`,
                   animationDelay: `${Math.random()}s`,
-                  backgroundColor: getRandomColor(),
                 }}
               ></div>
             </div>
@@ -45,7 +36,7 @@ const Navbar = () => {
           to="/products"
         >
           {productHovered && renderBackgroundEffect()}
-          <div className="buttonTextStyle">Products</div>
+          <div style={buttonTextStyle}>Products</div>
         </Link>
 
         <Link
@@ -55,7 +46,7 @@ const Navbar = () => {
           to="/create"
         >
           {createHovered && renderBackgroundEffect()}
-          <div className="buttonTextStyle">Create</div>
+          <div style={buttonTextStyle}>Create</div>
         </Link>
       </div>
     </nav>
@@ -79,9 +70,6 @@ const navbarContainerStyle: CSSProperties = {
 const itemStyle: CSSProperties = {
   width: "50%",
   height: 200,
-  color: "white",
-  textDecoration: "none",
-  fontWeight: 800,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -100,4 +88,11 @@ const hoverStyle: CSSProperties = {
 
 const buttonTextStyle: CSSProperties = {
   position: "absolute",
+  color: "white",
+  textDecoration: "none",
+  fontWeight: 800,
+  letterSpacing: 4,
+  textShadow: '3px 3px 0 rgba(0, 0, 0, 0.1), 6px 6px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1)',
+  transform: 'translate3d(0, 0, -6px)',
+  transition: 'transform 0.2s ease-in-out'
 };
