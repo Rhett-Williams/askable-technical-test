@@ -55,6 +55,10 @@ export class Database {
   }
 
   static async createOrder(productId: string) {
+    const allOrders = this.data.orders
+    const isProductUnavailable = allOrders.some((order) => order.product_id === productId)
+    if (isProductUnavailable) throw Error
+    
     const newOrder = {
       _id: faker.database.mongodbObjectId(),
       product_id: productId
