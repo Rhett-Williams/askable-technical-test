@@ -11,7 +11,7 @@ export class Database {
   static async getProducts(sortedBy: 'createdDate' | 'price') {
     const allProducts = this.data.products;
     switch(sortedBy){
-      case 'createdDate': return allProducts.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      case 'createdDate': return allProducts.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
       case 'price': return allProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
       default: return allProducts
     }
