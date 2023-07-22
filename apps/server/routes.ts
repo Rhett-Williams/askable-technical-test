@@ -60,4 +60,4 @@ router.post('/createOrder', validationSchemas.validateCreateOrder, async (req, r
 
 router.use(handleErrors);
 
-module.exports = router;
+export default router

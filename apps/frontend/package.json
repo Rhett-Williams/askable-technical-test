@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router": "latest",
+    "react-router-dom": "latest",
+    "@reduxjs/toolkit": "latest",
+    "react-redux": "latest"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
