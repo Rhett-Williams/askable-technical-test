@@ -1,25 +1,16 @@
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import Products from './pages/Products';
-import Create from './pages/Create';
-import ViewProduct from './pages/ViewProduct';
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import Products from "./pages/Products";
+import Create from "./pages/Create";
+import ViewProduct from "./pages/ViewProduct";
+import Navbar from "./components/Navbar";
+// import Navbar from './components/Navbar.tsx'
 
 const App = () => {
   return (
     <Router>
+      <Navbar />
+      <hr />
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/products">Products</Link>
-            </li>
-            <li>
-              <Link to="/create">Create</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <hr />
-
         <Routes>
           <Route path="/products" element={<Products />} />
           <Route path="/create" element={<Create />} />
