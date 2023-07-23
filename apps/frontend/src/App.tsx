@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Products from "./pages/products/Products";
-import Create from "./pages/Create";
-import ViewProduct from "./pages/ViewProduct";
+import Create from "./pages/create/Create";
+import ViewProduct from "./pages/viewProduct/ViewProduct";
 import Navbar from "./components/navbar/Navbar";
 import { Provider } from "react-redux";
 import { store } from "./redux/Store";

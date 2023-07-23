@@ -6,7 +6,7 @@ import './Products.css'
 import { GetProductsArgs } from "../../redux/services/Product/ProductTypes";
 
 const Products = () => {
-    const [getProducts, {data: products}] = useGetProductsMutation()
+    const [getProducts, {data: products}] = useGetProductsMutation({})
     const [sortedBy, setSortedBy] = useState<GetProductsArgs['sortedBy']>()
     const navigate = useNavigate();
 

@@ -8,7 +8,7 @@ import { Product, generateProductData } from "./generator";
 export class Database {
   private static data = generateProductData();
 
-  static async getProducts(sortedBy: "CreateDate" | "price" | undefined) {
+  static async getProducts(sortedBy: "CreateDate" | "Price" | undefined) {
     const allProducts = this.data.products.slice(); // Create a copy of the array
     switch (sortedBy) {
       case "CreateDate":
@@ -16,7 +16,7 @@ export class Database {
           (a, b) =>
             new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
         );
-      case "price":
+      case "Price":
         return allProducts.sort(
           (a, b) => parseFloat(a.price) - parseFloat(b.price)
         );
@@ -64,15 +64,22 @@ export class Database {
 
   static async createOrder(productId: string) {
     const allOrders = this.data.orders;
+
     const isProductUnavailable = allOrders.some(
       (order) => order.product_id === productId
     );
     if (isProductUnavailable) throw Error;
 
+    const orderId = faker.database.mongodbObjectId()
     const newOrder = {
-      _id: faker.database.mongodbObjectId(),
+      _id: orderId,
       product_id: productId,
     };
     this.data.orders.push(newOrder);
+
+    const allProducts = this.data.products;
+    const product = allProducts.find((product) => product._id === productId);
+    if(!product) throw Error
+    product.order_id = orderId;
   }
 }

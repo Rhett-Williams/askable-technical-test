@@ -5,3 +5,9 @@ export type GetProductsArgs = {
 }
 
 export type GetProductsData = Types.Product[]
+
+export type GetOneProductArgs = {
+    productId: string
+}
+
+export type GetOneProductData = Types.Product
