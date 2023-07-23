@@ -15,16 +15,7 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 });
 
-const baseQueryWithReauth: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (args, api, extraOptions) => {
-  let result = await baseQuery(args, api, extraOptions);
-  return result;
-};
-
-const baseQueryWithRetry = retry(baseQueryWithReauth, { maxRetries: 2 });
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
 const API = createApi({
   reducerPath: "AskableApi",
