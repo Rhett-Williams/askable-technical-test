@@ -10,7 +10,7 @@ export namespace Types {
     _id: string
   }
 
-  export type CreateProduct = OmitFields<Product, "_id" | "created_at">
+  export type CreateProduct = OmitFields<Product, "_id" | "created_at" | "order_id">
 
   export type Categories = "Sneakers" | "Clothing" | "Watches" | "Hats";
 }

@@ -2,6 +2,8 @@ import { faker } from "@faker-js/faker";
 
 type Maybe<T> = T | null;
 
+export type OmitFields<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 type Categories = "Sneakers" | "Clothing" | "Watches" | "Hats";
 
 type WithId<T> = T & {
@@ -15,6 +17,8 @@ export type Product = WithId<{
   created_at: string;
   price: string;
 }>;
+
+export type CreateProduct = OmitFields<Product, '_id' | 'created_at' | 'order_id'>
 
 export type Order = WithId<{
   product_id: string;

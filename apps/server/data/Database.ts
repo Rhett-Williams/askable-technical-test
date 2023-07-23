@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Product, generateProductData } from "./generator";
+import { CreateProduct, Product, generateProductData } from "./generator";
 
 /**
  * Treat this as a fake local database.
@@ -31,11 +31,14 @@ export class Database {
     return product;
   }
 
-  static async createProduct(product: Product) {
+  static async createProduct(product: CreateProduct) {
     const newProduct = {
       ...product,
       _id: faker.database.mongodbObjectId(),
+      created_at: faker.date.past().toISOString(),
+      order_id: null
     };
+    console.log("newProduct", newProduct)
     this.data.products.push(newProduct);
   }
 

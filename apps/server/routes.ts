@@ -30,12 +30,11 @@ const validationSchemas = {
   validateCreateProduct: celebrate({
     body: Joi.object({
       title: Joi.string().required(),
-      created_at: Joi.string().required(),
       category: Joi.string()
         .valid("Clothing", "Hats", "Sneakers", "Watches")
         .allow(null, "")
         .optional(),
-      price: Joi.string().required(),
+      price: Joi.number().required(),
     }),
   }),
   validateDeleteProduct: celebrate({

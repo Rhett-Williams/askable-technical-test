@@ -16,7 +16,10 @@
     "@reduxjs/toolkit": "latest",
     "react-redux": "latest",
     "framer-motion": "latest",
-    "react-loader-spinner": "^5.3.4"
+    "react-loader-spinner": "^5.3.4",
+    "formik": "latest",
+    "yup": "latest",
+    "@chakra-ui/react": "^2.7.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

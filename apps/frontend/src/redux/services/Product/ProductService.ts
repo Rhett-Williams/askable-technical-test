@@ -1,5 +1,5 @@
 import API from "../../Api";
-import { GetOneProductArgs, GetOneProductData, GetProductsArgs, GetProductsData } from "./ProductTypes";
+import { CreateProductArgs, DeleteProductArgs, GetOneProductArgs, GetOneProductData, GetProductsArgs, GetProductsData } from "./ProductTypes";
 
 const ProductService = API.injectEndpoints({
     endpoints: builder => ({
@@ -14,8 +14,22 @@ const ProductService = API.injectEndpoints({
             query: (args) => ({
                 url: `/getOneProduct/${args.productId}`,
             }), extraOptions: { retryCondition: () => false}, providesTags: ['Product']
+        }),
+        createProduct: builder.mutation<void, CreateProductArgs>({
+            query: (args) => ({
+                url: `/createProduct`,
+                method: "POST",
+                body: args,
+            }), extraOptions: { retryCondition: () => false}, invalidatesTags: ['Product']
+        }),
+        deleteProduct: builder.mutation<void, DeleteProductArgs>({
+            query: (args) => ({
+                url: `/deleteProduct`,
+                method: "POST",
+                body: args,
+            }), extraOptions: { retryCondition: () => false}, invalidatesTags: ['Product']
         })
     })
 })
 
-export const  { useGetProductsMutation, useGetOneProductQuery } = ProductService
+export const  { useGetProductsMutation, useGetOneProductQuery, useCreateProductMutation, useDeleteProductMutation } = ProductService

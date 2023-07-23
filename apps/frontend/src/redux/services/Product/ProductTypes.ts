@@ -11,3 +11,10 @@ export type GetOneProductArgs = {
 }
 
 export type GetOneProductData = Types.Product
+
+export type CreateProductArgs = Types.CreateProduct
+
+export type DeleteProductArgs = {
+    productId: string
+}
+

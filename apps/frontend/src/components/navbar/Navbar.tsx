@@ -6,6 +6,16 @@ const Navbar = () => {
   const [productHovered, setProductHovered] = useState(false);
   const [createHovered, setCreateHovered] = useState(false);
 
+  function getRandomColor() {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    const color = `rgb(${red}, ${green}, ${blue})`;
+  
+    return color;
+  }
+
   const renderBackgroundEffect = () => {
     return (
       <div className="backgroundEffectContainer">
@@ -17,6 +27,7 @@ const Navbar = () => {
                 style={{
                   animation: `moveLine ${Math.random()}s linear infinite`,
                   animationDelay: `${Math.random()}s`,
+                  backgroundColor: getRandomColor()
                 }}
               ></div>
             </div>
