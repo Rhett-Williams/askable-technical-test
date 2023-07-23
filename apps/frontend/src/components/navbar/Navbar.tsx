@@ -38,8 +38,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={navStyle}>
-      <div style={navbarContainerStyle}>
+    <nav className="main-nav-container">
+      <div className="inner-nav-container">
         <Link
           style={productHovered ? { ...itemStyle, ...hoverStyle } : itemStyle}
           onMouseEnter={() => setProductHovered(true)}
@@ -65,18 +65,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-const navStyle: CSSProperties = {
-  display: "flex",
-  width: "100%",
-  justifyContent: "center",
-};
-const navbarContainerStyle: CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: "100%",
-  maxWidth: 1100,
-};
 
 const itemStyle: CSSProperties = {
   width: "50%",

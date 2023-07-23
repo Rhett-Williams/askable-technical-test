@@ -1,3 +1,16 @@
+.main-nav-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.inner-nav-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+}
+
 .backgroundEffectContainer {
     display: flex;
     flex-direction: column;
