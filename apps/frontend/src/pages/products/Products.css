@@ -1,0 +1,7 @@
+.filtered-by-contained {
+    display: flex;
+}
+
+.sorted-by-option{
+    cursor: pointer;
+}

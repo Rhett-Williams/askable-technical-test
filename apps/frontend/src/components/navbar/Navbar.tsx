@@ -1,6 +1,6 @@
 import react, { CSSProperties, useState } from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import "./test.css";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [productHovered, setProductHovered] = useState(false);

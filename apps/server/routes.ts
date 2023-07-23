@@ -1,10 +1,10 @@
 import { Database } from "./data/Database";
 
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const { celebrate, Joi, Segments } = require("celebrate");
+import { celebrate, Joi, Segments } from "celebrate";
 
-const handleErrors = (err, req, res, next) => {
+const handleErrors = (err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   let statusCode = 500;
   if (err.statusCode) {
     statusCode = err.statusCode;
@@ -17,7 +17,7 @@ const validationSchemas = {
   validateGetProducts: celebrate({
     body: Joi.object({
       sortedBy: Joi.string()
-        .valid("createDate", "Price")
+        .valid("CreateDate", "Price")
         .allow(null, "")
         .optional(),
     }),
@@ -29,9 +29,7 @@ const validationSchemas = {
   }),
   validateCreateProduct: celebrate({
     body: Joi.object({
-      _id: Joi.string().required(),
       title: Joi.string().required(),
-      order_id: Joi.string().required(),
       created_at: Joi.string().required(),
       category: Joi.string()
         .valid("Clothing", "Hats", "Sneakers", "Watches")
@@ -61,42 +59,44 @@ router.post(
   "/getProducts",
   validationSchemas.validateGetProducts,
   async (req, res) => {
-    res.send(Database.getProducts(req.body.sortedBy));
+    console.log("asd", req.body)
+    res.send(await Database.getProducts(req.body.sortedBy));
   }
 );
 router.post(
   "/getOneProduct",
   validationSchemas.validateGetOneProduct,
   async (req, res) => {
-    res.send(Database.getOneProduct(req.body.productId));
+
+    res.send(await Database.getOneProduct(req.body.productId));
   }
 );
 router.post(
   "/createProduct",
   validationSchemas.validateCreateProduct,
   async (req, res) => {
-    res.send(Database.createProduct(req.body));
+    res.send(await Database.createProduct(req.body));
   }
 );
 router.post(
   "/deleteProduct",
   validationSchemas.validateDeleteProduct,
   async (req, res) => {
-    res.send(Database.deleteProduct(req.body.productId));
+    res.send(await Database.deleteProduct(req.body.productId));
   }
 );
 router.post(
   "/getOrder",
   validationSchemas.validateGetOrder,
   async (req, res) => {
-    res.send(Database.getOrder(req.body.orderId));
+    res.send(await Database.getOrder(req.body.orderId));
   }
 );
 router.post(
   "/createOrder",
   validationSchemas.validateCreateOrder,
   async (req, res) => {
-    res.send(Database.createOrder(req.body.productId));
+    res.send(await Database.createOrder(req.body.productId));
   }
 );
 

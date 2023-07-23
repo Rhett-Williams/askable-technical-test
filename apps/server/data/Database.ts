@@ -8,10 +8,10 @@ import { Product, generateProductData } from "./generator";
 export class Database {
   private static data = generateProductData();
 
-  static async getProducts(sortedBy: "createdDate" | "price") {
-    const allProducts = this.data.products;
+  static async getProducts(sortedBy: "CreateDate" | "price" | undefined) {
+    const allProducts = this.data.products.slice(); // Create a copy of the array
     switch (sortedBy) {
-      case "createdDate":
+      case "CreateDate":
         return allProducts.sort(
           (a, b) =>
             new Date(a.created_at).getTime() - new Date(b.created_at).getTime()

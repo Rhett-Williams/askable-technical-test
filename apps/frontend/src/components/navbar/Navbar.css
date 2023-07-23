@@ -18,7 +18,6 @@
   .line {
     width: 20px;
     height: 100%;
-    background-color: black;
     position: absolute;
     animation: moveLine 0.4s linear infinite;
     background-color: white;
