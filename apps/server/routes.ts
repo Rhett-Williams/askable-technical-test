@@ -5,7 +5,12 @@ const router = express.Router();
 import { celebrate, Joi, Segments } from "celebrate";
 import { SortByCategories } from "./data/generator";
 
-const handleErrors = (err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+const handleErrors = (
+  err: any,
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
   let statusCode = 500;
   if (err.statusCode) {
     statusCode = err.statusCode;
@@ -60,9 +65,15 @@ router.get(
   validationSchemas.validateGetProducts,
   async (req, res, next) => {
     try {
-      const allowedSortOptions = ['CreateDate', 'Price'];
-      if (req.params.sortedBy === undefined && !allowedSortOptions.includes(req.params.sortedBy)) throw Error
-      const products = await Database.getProducts(req.params.sortedBy as SortByCategories)
+      const allowedSortOptions = ["CreateDate", "Price"];
+      if (
+        req.params.sortedBy === undefined &&
+        !allowedSortOptions.includes(req.params.sortedBy)
+      )
+        throw Error;
+      const products = await Database.getProducts(
+        req.params.sortedBy as SortByCategories
+      );
       res.send(products);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -75,7 +86,7 @@ router.get(
   validationSchemas.validateGetOneProduct,
   async (req, res, next) => {
     try {
-      const product = await Database.getOneProduct(req.params.productId)
+      const product = await Database.getOneProduct(req.params.productId);
       res.send(product);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -88,7 +99,7 @@ router.post(
   validationSchemas.validateCreateProduct,
   async (req, res, next) => {
     try {
-      const product = await Database.createProduct(req.body)
+      const product = await Database.createProduct(req.body);
       res.send(product);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -101,7 +112,7 @@ router.post(
   validationSchemas.validateDeleteProduct,
   async (req, res, next) => {
     try {
-      const product = await Database.deleteProduct(req.body.productId)
+      const product = await Database.deleteProduct(req.body.productId);
       res.send(product);
     } catch (error) {
       console.error("Error creating order:", error);
@@ -114,7 +125,7 @@ router.post(
   validationSchemas.validateGetOrder,
   async (req, res, next) => {
     try {
-      const order = await Database.getOrder(req.body.orderId)
+      const order = await Database.getOrder(req.body.orderId);
       res.send(order);
     } catch (error) {
       console.error("Error creating order:", error);

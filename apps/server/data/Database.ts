@@ -1,5 +1,10 @@
 import { faker } from "@faker-js/faker";
-import { CreateProduct, Product, SortByCategories, generateProductData } from "./generator";
+import {
+  CreateProduct,
+  Product,
+  SortByCategories,
+  generateProductData,
+} from "./generator";
 
 /**
  * Treat this as a fake local database.
@@ -36,7 +41,7 @@ export class Database {
       ...product,
       _id: faker.database.mongodbObjectId(),
       created_at: faker.date.past().toISOString(),
-      order_id: null
+      order_id: null,
     };
     this.data.products.push(newProduct);
   }
@@ -72,7 +77,7 @@ export class Database {
     );
     if (isProductUnavailable) throw Error;
 
-    const orderId = faker.database.mongodbObjectId()
+    const orderId = faker.database.mongodbObjectId();
     const newOrder = {
       _id: orderId,
       product_id: productId,
@@ -81,7 +86,7 @@ export class Database {
 
     const allProducts = this.data.products;
     const product = allProducts.find((product) => product._id === productId);
-    if(!product) throw Error
+    if (!product) throw Error;
     product.order_id = orderId;
   }
 }

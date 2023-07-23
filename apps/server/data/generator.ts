@@ -18,13 +18,16 @@ export type Product = WithId<{
   price: string;
 }>;
 
-export type CreateProduct = OmitFields<Product, '_id' | 'created_at' | 'order_id'>
+export type CreateProduct = OmitFields<
+  Product,
+  "_id" | "created_at" | "order_id"
+>;
 
 export type Order = WithId<{
   product_id: string;
 }>;
 
-export type SortByCategories = "CreateDate" | "Price" | undefined
+export type SortByCategories = "CreateDate" | "Price" | undefined;
 
 function createMockProduct(orderId: Maybe<string>): Product {
   return {

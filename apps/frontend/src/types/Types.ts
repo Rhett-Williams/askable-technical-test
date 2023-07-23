@@ -7,10 +7,13 @@ export namespace Types {
     category: Categories;
     created_at: string;
     price: string;
-    _id: string
+    _id: string;
   }
 
-  export type CreateProduct = OmitFields<Product, "_id" | "created_at" | "order_id">
+  export type CreateProduct = OmitFields<
+    Product,
+    "_id" | "created_at" | "order_id"
+  >;
 
   export type Categories = "Sneakers" | "Clothing" | "Watches" | "Hats";
 }

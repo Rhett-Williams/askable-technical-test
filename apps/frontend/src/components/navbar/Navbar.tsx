@@ -12,7 +12,7 @@ const Navbar = () => {
     const blue = Math.floor(Math.random() * 256);
 
     const color = `rgb(${red}, ${green}, ${blue})`;
-  
+
     return color;
   }
 
@@ -27,7 +27,7 @@ const Navbar = () => {
                 style={{
                   animation: `moveLine ${Math.random()}s linear infinite`,
                   animationDelay: `${Math.random()}s`,
-                  backgroundColor: getRandomColor()
+                  backgroundColor: getRandomColor(),
                 }}
               ></div>
             </div>
@@ -91,7 +91,8 @@ const buttonTextStyle: CSSProperties = {
   textDecoration: "none",
   fontWeight: 800,
   letterSpacing: 4,
-  textShadow: '3px 3px 0 rgba(0, 0, 0, 0.1), 6px 6px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1)',
-  transform: 'translate3d(0, 0, -6px)',
-  transition: 'transform 0.2s ease-in-out'
+  textShadow:
+    "3px 3px 0 rgba(0, 0, 0, 0.1), 6px 6px 0 rgba(0, 0, 0, 0.1), 9px 9px 0 rgba(0, 0, 0, 0.1)",
+  transform: "translate3d(0, 0, -6px)",
+  transition: "transform 0.2s ease-in-out",
 };
