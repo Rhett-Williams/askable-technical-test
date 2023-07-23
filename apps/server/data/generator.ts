@@ -24,6 +24,8 @@ export type Order = WithId<{
   product_id: string;
 }>;
 
+export type SortByCategories = "CreateDate" | "Price" | undefined
+
 function createMockProduct(orderId: Maybe<string>): Product {
   return {
     _id: faker.database.mongodbObjectId(),

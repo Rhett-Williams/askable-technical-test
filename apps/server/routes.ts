@@ -3,6 +3,7 @@ import { Database } from "./data/Database";
 import express from "express";
 const router = express.Router();
 import { celebrate, Joi, Segments } from "celebrate";
+import { SortByCategories } from "./data/generator";
 
 const handleErrors = (err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   let statusCode = 500;
@@ -54,12 +55,14 @@ const validationSchemas = {
   }),
 };
 
-router.post(
-  "/getProducts",
+router.get(
+  "/getProducts/:sortedBy",
   validationSchemas.validateGetProducts,
   async (req, res, next) => {
     try {
-      const products = await Database.getProducts(req.body.sortedBy)
+      const allowedSortOptions = ['CreateDate', 'Price'];
+      if (req.params.sortedBy === undefined && !allowedSortOptions.includes(req.params.sortedBy)) throw Error
+      const products = await Database.getProducts(req.params.sortedBy as SortByCategories)
       res.send(products);
     } catch (error) {
       console.error("Error creating order:", error);

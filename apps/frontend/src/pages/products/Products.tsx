@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useGetProductsMutation } from "../../redux/services/Product/ProductService";
 import ProductListItem from "../../components/producListItem/ProductListItem";
 import { useNavigate } from "react-router-dom";
 import './Products.css'
 import { GetProductsArgs } from "../../redux/services/Product/ProductTypes";
+import { useGetProductsQuery } from "../../redux/services/Product/ProductService";
 
 const Products = () => {
-    const [getProducts, {data: products}] = useGetProductsMutation({})
     const [sortedBy, setSortedBy] = useState<GetProductsArgs['sortedBy']>()
+    const {data: products} = useGetProductsQuery({sortedBy})
     const navigate = useNavigate();
-
-    useEffect(() => {
-        getProductData()
-    },[sortedBy])
-
-    const getProductData = async () => {
-        try {
-            await getProducts({sortedBy}).unwrap()
-        } catch (error) {
-            console.log("error", error)
-        }
-    }
 
     const renderProducts = () => {
         return products?.map((product, index) => {

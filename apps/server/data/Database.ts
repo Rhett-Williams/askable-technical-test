@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { CreateProduct, Product, generateProductData } from "./generator";
+import { CreateProduct, Product, SortByCategories, generateProductData } from "./generator";
 
 /**
  * Treat this as a fake local database.
@@ -8,13 +8,13 @@ import { CreateProduct, Product, generateProductData } from "./generator";
 export class Database {
   private static data = generateProductData();
 
-  static async getProducts(sortedBy: "CreateDate" | "Price" | undefined) {
-    const allProducts = this.data.products.slice(); // Create a copy of the array
+  static async getProducts(sortedBy: SortByCategories) {
+    const allProducts = this.data.products.slice();
     switch (sortedBy) {
       case "CreateDate":
         return allProducts.sort(
           (a, b) =>
-            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
         );
       case "Price":
         return allProducts.sort(
@@ -38,7 +38,6 @@ export class Database {
       created_at: faker.date.past().toISOString(),
       order_id: null
     };
-    console.log("newProduct", newProduct)
     this.data.products.push(newProduct);
   }
 

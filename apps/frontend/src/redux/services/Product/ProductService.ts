@@ -3,12 +3,10 @@ import { CreateProductArgs, DeleteProductArgs, GetOneProductArgs, GetOneProductD
 
 const ProductService = API.injectEndpoints({
     endpoints: builder => ({
-        getProducts: builder.mutation<GetProductsData, GetProductsArgs>({
+        getProducts: builder.query<GetProductsData, GetProductsArgs>({
             query: (args) => ({
-                url: "/getProducts",
-                method: "POST",
-                body: args,
-            }), extraOptions: { retryCondition: () => false}
+                url: `/getProducts/${args.sortedBy}`,
+            }), extraOptions: { retryCondition: () => false}, providesTags: ['Product']
         }),
         getOneProduct: builder.query<GetOneProductData, GetOneProductArgs>({
             query: (args) => ({
@@ -32,4 +30,4 @@ const ProductService = API.injectEndpoints({
     })
 })
 
-export const  { useGetProductsMutation, useGetOneProductQuery, useCreateProductMutation, useDeleteProductMutation } = ProductService
+export const  { useGetProductsQuery, useGetOneProductQuery, useCreateProductMutation, useDeleteProductMutation } = ProductService
